@@ -279,6 +279,22 @@ Install the package in editable mode with all dependencies:
 python3 -m pip install -e .
 ```
 
+Install with development dependencies (includes `pip-tools`, `pytest`, `pytest-cov`):
+
+```bash
+python3 -m pip install -e ".[dev]"
+```
+
+## Generate Requirements File
+
+Generate a pinned `requirements.txt` file from pyproject.toml:
+
+```bash
+pip-compile pyproject.toml -o requirements.txt
+```
+
+This creates a `requirements.txt` with exact versions of all dependencies and their transitive dependencies.
+
 ## Run Tests
 
 Run all tests with coverage:
