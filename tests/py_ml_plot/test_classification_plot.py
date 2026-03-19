@@ -44,11 +44,9 @@ class TestClassificationPlot(TestCase):
                 1: {"min": 1000, "max": 1000, "step": 0.25},
             },
             feature_scale=lambda x_set, y_set: (sc.inverse_transform(x_set), y_set),
-            predict=lambda x1, x2: (
-                classifier.predict(
-                    sc.transform(np.array([x1.ravel(), x2.ravel()]).T)
-                ).reshape(x1.shape)
-            ),
+            predict=lambda x1, x2: classifier.predict(
+                sc.transform(np.array([x1.ravel(), x2.ravel()]).T)
+            ).reshape(x1.shape),
         )
 
         assert result is True, "Classification plot should be set up correctly"
@@ -107,11 +105,9 @@ class TestClassificationPlot(TestCase):
                 1: {"min": 1000, "max": 1000, "step": 0.25},
             },
             feature_scale=lambda x_set, y_set: (sc.inverse_transform(x_set), y_set),
-            predict=lambda x1, x2: (
-                classifier.predict(
-                    sc.transform(np.array([x1.ravel(), x2.ravel()]).T)
-                ).reshape(x1.shape)
-            ),
+            predict=lambda x1, x2: classifier.predict(
+                sc.transform(np.array([x1.ravel(), x2.ravel()]).T)
+            ).reshape(x1.shape),
         )
 
         assert result is True, "Classification plot should be set up correctly"

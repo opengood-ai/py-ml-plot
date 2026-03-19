@@ -1,13 +1,13 @@
 # Python Machine Learning (ML) Plot
 
-[![Build](https://github.com/opengood-aio/py-ml-plot/workflows/build/badge.svg)](https://github.com/opengood-aio/py-ml-plot/actions?query=workflow%3Abuild)
-[![Release](https://github.com/opengood-aio/py-ml-plot/workflows/release/badge.svg)](https://github.com/opengood-aio/py-ml-plot/actions?query=workflow%3Arelease)
-[![CodeQL](https://github.com/opengood-aio/py-ml-plot/actions/workflows/codeql.yml/badge.svg)](https://github.com/opengood-aio/py-ml-plot/actions/workflows/codeql.yml)
-[![Codecov](https://codecov.io/gh/opengood-aio/py-ml-plot/graph/badge.svg?token=WX6Er5S6Vj)](https://codecov.io/gh/opengood-aio/py-ml-plot)
-[![Release Version](https://img.shields.io/github/release/opengood-aio/py-ml-plot.svg)](https://github.com/opengood-aio/py-ml-plot/releases/latest)
+[![Build](https://github.com/opengood-ai/py-ml-plot/workflows/build/badge.svg)](https://github.com/opengood-ai/py-ml-plot/actions?query=workflow%3Abuild)
+[![Release](https://github.com/opengood-ai/py-ml-plot/workflows/release/badge.svg)](https://github.com/opengood-ai/py-ml-plot/actions?query=workflow%3Arelease)
+[![CodeQL](https://github.com/opengood-ai/py-ml-plot/actions/workflows/codeql.yml/badge.svg)](https://github.com/opengood-ai/py-ml-plot/actions/workflows/codeql.yml)
+[![Codecov](https://codecov.io/gh/opengood-ai/py-ml-plot/graph/badge.svg?token=WX6Er5S6Vj)](https://codecov.io/gh/opengood-ai/py-ml-plot)
+[![Release Version](https://img.shields.io/github/release/opengood-ai/py-ml-plot.svg)](https://github.com/opengood-ai/py-ml-plot/releases/latest)
 [![PyPI](https://img.shields.io/pypi/v/opengood.py-ml-plot)](https://pypi.org/project/opengood.py-ml-plot/)
 ![Python](https://img.shields.io/pypi/pyversions/opengood.py-ml-plot)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/opengood-aio/py-ml-plot/master/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/opengood-ai/py-ml-plot/master/LICENSE)
 
 Modules containing reusable functions for machine learning visualization
 plotting
@@ -98,7 +98,7 @@ plt.show()
 
 ##### Output
 
-![Setup Classification Plot Visualization](https://raw.githubusercontent.com/opengood-aio/py-ml-plot/main/docs/images/setup-classification-plot-visualization.png)
+![Setup Classification Plot Visualization](https://raw.githubusercontent.com/opengood-ai/py-ml-plot/main/docs/images/setup-classification-plot-visualization.png)
 
 ---
 
@@ -109,8 +109,8 @@ plt.show()
 `feature_scale` lambda implementation logic for function
 `setup_classification_plot` is as follows:
 
-* Inverse feature scaling is invoked via a featuring scaling object, such as
-  the `StandardScalar` object `sc` created earlier for feature scaling
+* Inverse feature scaling is invoked via a feature scaling object, such as
+  the `StandardScaler` object `sc` created earlier for feature scaling
 * `x_set` and `y_set` are assigned non-feature scaled values of the matrix of
   features and the dependent variable
   * `x_set` values are inverted from their feature-scaled values in `x`
@@ -150,7 +150,7 @@ as follows:
 * If the `feature_scale` lambda is defined, `x_set` and `y_set` are
   assigned non-feature scaled values of the matrix of features and the dependent
   variable from the sets using a feature scaling object, such as the
-  `StandardScalar` object created earlier for feature scaling
+  `StandardScaler` object created earlier for feature scaling
     * `x_set` values are inverted from their feature-scaled values in `x`
     * `y_set` values are not inverted and taken directly from `y`
 * `meshgrid` function from the NumPy library returns a tuple of coordinate
@@ -187,7 +187,7 @@ as follows:
             * `step` parameter
                 * Spacing between values
                 * Value of `0.25` is added for spacing
-* The prediction logic implemented in the `preodict` lambda is executed, and
+* The prediction logic implemented in the `predict` lambda is executed, and
   the result is assigned to `y_pred`, containing the predictions
 * `contourf` function from the Matplotlib library is used for creating filled
   contour plots
@@ -264,32 +264,54 @@ as follows:
 
 ## Python Virtual Environment
 
-Create Python virtual environment:
+Create and activate Python virtual environment:
 
 ```bash
-cd ~/workspace/opengood-aio/py-ml-plot/.venv
-python3 -m venv ~/workspace/opengood-aio/py-ml-plot/.venv
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-## Install Packages
+## Install Dependencies
+
+Install the package in editable mode with all dependencies:
 
 ```bash
-python3 -m pip install matplotlib
-python3 -m pip install numpy
-python3 -m pip install pandas
-python3 -m pip install scikit-learn
+python3 -m pip install -e .
 ```
 
-## Create Requirements File
+Install with development dependencies (includes `pip-tools`, `pytest`, `pytest-cov`):
 
 ```bash
-pip freeze > requirements.txt
+python3 -m pip install -e ".[dev]"
 ```
+
+## Generate Requirements File
+
+Generate a pinned `requirements.txt` file from pyproject.toml:
+
+```bash
+pip-compile pyproject.toml -o requirements.txt
+```
+
+This creates a `requirements.txt` with exact versions of all dependencies and their transitive dependencies.
 
 ## Run Tests
 
+Run all tests with coverage:
+
 ```bash
 python -m pytest tests/
+```
+
+Run tests with verbose output and coverage report:
+
+```bash
+python -m pytest tests/ -v --cov=src.opengood.py_ml_plot --cov-report=term-missing
+```
+
+Run a specific test:
+
+```bash
+python -m pytest tests/py_ml_plot/test_classification_plot.py::TestClassificationPlot::test_logistic_regression_setup_classification_plot_with_shaded_regions
 ```
 
