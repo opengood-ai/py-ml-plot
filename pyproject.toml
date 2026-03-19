@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "opengood.py_ml_plot"
-version = "2.3.0"
+version = "2.4.0"
 description = "Modules containing reusable functions for machine learning visualization plotting"
 authors = [
     { name = "OpenGood", email = "ai@opengood.ai" }
