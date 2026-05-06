@@ -2,13 +2,16 @@ name: build
 
 on:
   push:
+    branches:
+      - '**'
+      - '!main'
     paths:
       - '**'
       - '!.github/workflows/*'
-      - '.github/workflows/release.yml'
       - '!.gitignore'
       - '!LICENSE'
       - '!README.md'
+      - '.github/workflows/release.yml'
 
 jobs:
   build:
