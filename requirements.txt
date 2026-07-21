@@ -28,7 +28,7 @@ packaging==26.2
     # via matplotlib
 pandas==3.0.2
     # via opengood.py_ml_plot (pyproject.toml)
-pillow==12.2.0
+pillow==12.3.0
     # via matplotlib
 pyparsing==3.3.2
     # via matplotlib
