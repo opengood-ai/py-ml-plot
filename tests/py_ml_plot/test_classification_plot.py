@@ -1,5 +1,5 @@
 import os
-from unittest import TestCase, skip, main
+from unittest import TestCase, main, skip
 
 import numpy as np
 import pandas as pd
