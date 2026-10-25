@@ -4,26 +4,31 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Python Machine Learning (ML) Plot is a library providing reusable functions for machine learning visualization plotting. The primary focus is on classification model visualization with decision boundaries and classified regions.
+Python Machine Learning (ML) Plot is a library providing reusable functions for machine learning visualization plotting.
+The primary focus is on classification model visualization with decision boundaries and classified regions.
 
 ## Architecture
 
 ### Module Structure
 
 - `src/opengood/py_ml_plot/` - Main package implementing ML plotting utilities
-  - `classification_plot.py` - Contains `setup_classification_plot()` function for creating 2D classification visualizations
-  - `__init__.py` - Exports public API (`setup_classification_plot`)
+    - `classification_plot.py` - Contains `setup_classification_plot()` function for creating 2D classification
+      visualizations
+    - `__init__.py` - Exports public API (`setup_classification_plot`)
 
 ### Classification Plot Architecture
 
 The `setup_classification_plot()` function visualizes classification models through several key steps:
 
-1. **Meshgrid Generation**: Creates a grid of points across the feature space using configurable padding and step sizes for each axis
-2. **Feature Scaling** (optional): Applies inverse transformations via `feature_scale` lambda to handle models trained on scaled data
+1. **Meshgrid Generation**: Creates a grid of points across the feature space using configurable padding and step sizes
+   for each axis
+2. **Feature Scaling** (optional): Applies inverse transformations via `feature_scale` lambda to handle models trained
+   on scaled data
 3. **Prediction**: Uses the `predict` lambda to generate class predictions across the entire meshgrid
 4. **Visualization**: Combines filled contour plots (decision regions) with scatter plots (actual data points)
 
-The function is designed to work with any scikit-learn classifier by accepting prediction and feature scaling logic as lambda functions.
+The function is designed to work with any scikit-learn classifier by accepting prediction and feature scaling logic as
+lambda functions.
 
 ## Development Commands
 
@@ -54,11 +59,13 @@ python -m pytest tests/ -v
 python -m pytest tests/ --cov=src.opengood.py_ml_plot --cov-report=term-missing
 ```
 
-**Note**: Some tests are marked with `@skip` decorator for long-running tests (e.g., K-NN visualization). These are intended for local verification only.
+**Note**: Some tests are marked with `@skip` decorator for long-running tests (e.g., K-NN visualization). These are
+intended for local verification only.
 
 ### Test Configuration
 
 Test configuration is in `pyproject.toml` under `[tool.pytest.ini_options]`:
+
 - Coverage threshold: 70%
 - Test markers: `slow`, `smoke`, `unit`
 - Coverage report outputs to `coverage.xml`
@@ -96,18 +103,22 @@ meshgrid = {
 ### Lambda Function Patterns
 
 **Feature Scaling Lambda**:
+
 ```python
 feature_scale = lambda x_set, y_set: (sc.inverse_transform(x_set), y_set)
 ```
+
 - Inverts feature scaling applied during training to show original data ranges
 - Returns tuple of (transformed_x, original_y)
 
 **Prediction Lambda**:
+
 ```python
 predict = lambda x1, x2: classifier.predict(
     sc.transform(np.array([x1.ravel(), x2.ravel()]).T)
 ).reshape(x1.shape)
 ```
+
 - Takes meshgrid coordinates (x1, x2)
 - Applies feature scaling if the classifier was trained on scaled data
 - Uses `ravel()` to flatten, combines into 2D array, transforms, predicts, then reshapes
@@ -123,6 +134,7 @@ predict = lambda x1, x2: classifier.predict(
 ## Dependencies
 
 Core runtime dependencies:
+
 - matplotlib >= 3.10.3 (visualization)
 - numpy >= 2.3.0rc1 (numerical operations)
 - pandas >= 2.2.3 (data handling)

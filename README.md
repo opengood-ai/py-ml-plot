@@ -113,8 +113,8 @@ plt.show()
   the `StandardScaler` object `sc` created earlier for feature scaling
 * `x_set` and `y_set` are assigned non-feature scaled values of the matrix of
   features and the dependent variable
-  * `x_set` values are inverted from their feature-scaled values in `x`
-  * `y_set` values are not inverted and taken directly from `y`
+    * `x_set` values are inverted from their feature-scaled values in `x`
+    * `y_set` values are not inverted and taken directly from `y`
 
 ###### Predict Lambda Logic
 
@@ -129,11 +129,11 @@ is as follows:
       scaling
 * `ravel` function from the NumPy library is used to flatten a
   multidimensional array into a one-dimensional array
-  * `x1` and `x2` are flatten into a 1D array via the `ravel` function
-  * They are then combined via the `array` function from the NumPy
-  library into a 2D array
-  * The result is then reshaped via the `reshape` function to match
-  the shape of `x1`
+    * `x1` and `x2` are flatten into a 1D array via the `ravel` function
+    * They are then combined via the `array` function from the NumPy
+      library into a 2D array
+    * The result is then reshaped via the `reshape` function to match
+      the shape of `x1`
 
 ###### Setup Plot Visualization Logic
 
@@ -155,38 +155,38 @@ as follows:
     * `y_set` values are not inverted and taken directly from `y`
 * `meshgrid` function from the NumPy library returns a tuple of coordinate
   matrices from coordinate vectors
-  * The ranges for each axis are controlled by the `meshgrid` dict parameter
-    * Two sets of matrices (`x1` and `x2`) are returned with coordinate vectors
-    * `x1`
-        * `arange` function is called with a defined start and stop interval
-            * `x_set[:, 0]` returns all the rows for feature `x1`
-            * `start` parameter
-                * Start of an interval
-                * `x_set[:, 0].min()` returns the minimum value for feature `x1`
-                * Value of `10` is subtracted for padding
-            * `stop` parameter
-                * End of an interval
-                * `x_set[:, 0].max()` returns the maximum value for feature `x1`
-                * Value of `10` is added for padding
-            * `step` parameter
-                * Spacing between values
-                * Value of `0.25` is added for spacing
-    * `x2`
-        * `arange` function is called with a defined start and stop interval
-            * `x_set[:, 1]` returns all the rows for feature `x2`
-            * `start` parameter
-                * Start of an interval
-                * `x_set[:, 1].min()` returns the minimum value for feature `x2`
-                * Value of `1000` is subtracted for padding
-                * Value of `1000` is used instead of `10` due to the difference
-                  in scaling for feature `x2` vs. feature `x1`
-            * `stop` parameter
-                * End of interval
-                * `x_set[:, 1].max()` returns the maximum value for feature `x2`
-                * Value of `1000` is added for padding
-            * `step` parameter
-                * Spacing between values
-                * Value of `0.25` is added for spacing
+    * The ranges for each axis are controlled by the `meshgrid` dict parameter
+        * Two sets of matrices (`x1` and `x2`) are returned with coordinate vectors
+        * `x1`
+            * `arange` function is called with a defined start and stop interval
+                * `x_set[:, 0]` returns all the rows for feature `x1`
+                * `start` parameter
+                    * Start of an interval
+                    * `x_set[:, 0].min()` returns the minimum value for feature `x1`
+                    * Value of `10` is subtracted for padding
+                * `stop` parameter
+                    * End of an interval
+                    * `x_set[:, 0].max()` returns the maximum value for feature `x1`
+                    * Value of `10` is added for padding
+                * `step` parameter
+                    * Spacing between values
+                    * Value of `0.25` is added for spacing
+        * `x2`
+            * `arange` function is called with a defined start and stop interval
+                * `x_set[:, 1]` returns all the rows for feature `x2`
+                * `start` parameter
+                    * Start of an interval
+                    * `x_set[:, 1].min()` returns the minimum value for feature `x2`
+                    * Value of `1000` is subtracted for padding
+                    * Value of `1000` is used instead of `10` due to the difference
+                      in scaling for feature `x2` vs. feature `x1`
+                * `stop` parameter
+                    * End of interval
+                    * `x_set[:, 1].max()` returns the maximum value for feature `x2`
+                    * Value of `1000` is added for padding
+                * `step` parameter
+                    * Spacing between values
+                    * Value of `0.25` is added for spacing
 * The prediction logic implemented in the `predict` lambda is executed, and
   the result is assigned to `y_pred`, containing the predictions
 * `contourf` function from the Matplotlib library is used for creating filled
