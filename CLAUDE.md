@@ -91,8 +91,8 @@ The `meshgrid` parameter controls the visualization bounds and resolution:
 
 ```python
 meshgrid = {
-    0: {"min": 10, "max": 10, "step": 0.25},    # x-axis padding and step
-    1: {"min": 1000, "max": 1000, "step": 0.25}  # y-axis padding and step
+    0: {"min": 10, "max": 10, "step": 0.25},  # x-axis padding and step
+    1: {"min": 1000, "max": 1000, "step": 0.25},  # y-axis padding and step
 }
 ```
 
